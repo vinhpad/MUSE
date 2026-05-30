@@ -7,14 +7,14 @@ from methods.ewcpp import EWCpp
 from methods.lwf import LwF
 from methods.mvp import MVP
 from methods.GACL import GACL
-from methods.flame import FLAME
+from methods.muse import MUSE
 from methods.SLDA import SLDA
 
 # torch.backends.cudnn.enabled = False
 
 methods = {
     "gacl"            : GACL,
-    "flame"           : FLAME,
+    "muse"            : MUSE,
     "er"              : ER, 
     "rm"              : RM,
     "lwf"             : LwF,

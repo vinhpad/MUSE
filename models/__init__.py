@@ -38,7 +38,7 @@ def get_model(args, **kwargs):
     try:
         if mode == "gacl":
             return (VITACIL(num_classes, buffer_size),224)
-        elif mode == "flame":
+        elif mode == "muse":
             rank = args.get("lora_rank", 16)
             alpha = args.get("lora_alpha", 32)
             targets_str = args.get("adapter_targets", "qkv,proj,fc1,fc2")

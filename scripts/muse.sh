@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MODE="flame"
+MODE="muse"
 DATASET="cifar100"
 # DATASET="imagenet-r"
 # DATASET="tinyimagenet"
@@ -38,7 +38,7 @@ else
     exit 1
 fi
 
-NOTE="FLAME"
+NOTE="MUSE"
 
 for seed in 1 2 3 4 5
 do
@@ -53,6 +53,6 @@ do
     --lora_rank $LORA_RANK --lora_alpha $LORA_ALPHA --adapter_targets "$ADAPTER_TARGETS" --cosine_scale $COSINE_SCALE \
     --ca_lr $CA_LR --ca_epochs $CA_EPOCHS --ca_samples $CA_SAMPLES \
     --shrink_k $SHRINK_K $WANDB \
-    --wandb_project "cifar100-flame"
+    --wandb_project "cifar100-muse"
 done
 wait

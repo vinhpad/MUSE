@@ -9,9 +9,9 @@ from torch.utils.data import DataLoader
 from methods._trainer import _Trainer
 
 
-class FLAME(_Trainer):
+class MUSE(_Trainer):
     def __init__(self, **kwargs):
-        super(FLAME, self).__init__(**kwargs)
+        super(MUSE, self).__init__(**kwargs)
         self.ca_lr = kwargs.get("ca_lr", 0.005)
         self.ca_epochs = kwargs.get("ca_epochs", 10)
         self.ca_samples = kwargs.get("ca_samples", 256)
