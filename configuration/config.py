@@ -152,6 +152,13 @@ def base_parser():
     parser.add_argument('--ca_samples', default=256, type=int, help="Samples per class per epoch for classifier alignment (balanced).")
     parser.add_argument('--shrink_k', default=10.0, type=float, help="Shrinkage factor k for class variance: alpha = min(1, k/n). Larger k = more shrink toward isotropic.")
 
+    # InfLoRA
+    parser.add_argument('--inflora_warmup', default=256, type=int, help="Samples to accumulate per task before designing B_t (head-only training during this window).")
+    parser.add_argument('--inflora_svd_samples', default=2048, type=int, help="Max input vectors per layer fed to SVD when designing B_t / updating M_basis.")
+    parser.add_argument('--inflora_m_energy', default=0.99, type=float, help="Cumulative singular-value energy retained when updating M_basis at task end.")
+    parser.add_argument('--inflora_calib_cap', default=2048, type=int, help="Per-layer capacity of the calibration buffer that collects input features.")
+    parser.add_argument('--inflora_calib_per_batch', default=16, type=int, help="Rows sampled per forward call per layer into the calibration buffer.")
+
 
     args = parser.parse_args()
     return args

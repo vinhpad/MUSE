@@ -8,6 +8,7 @@ from methods.lwf import LwF
 from methods.mvp import MVP
 from methods.GACL import GACL
 from methods.muse import MUSE
+from methods.inflora import InfLoRA
 from methods.SLDA import SLDA
 
 # torch.backends.cudnn.enabled = False
@@ -15,6 +16,7 @@ from methods.SLDA import SLDA
 methods = {
     "gacl"            : GACL,
     "muse"            : MUSE,
+    "inflora"         : InfLoRA,
     "er"              : ER, 
     "rm"              : RM,
     "lwf"             : LwF,

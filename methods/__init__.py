@@ -5,6 +5,7 @@ from .rainbow_memory import RM
 from .mvp import MVP
 from .GACL import GACL
 from .SLDA import SLDA
+from .inflora import InfLoRA
 
 __all__ = [
     "ER",
@@ -13,7 +14,8 @@ __all__ = [
     "RM",
     "GACL",
     "MVP",
-    "SLDA"
+    "SLDA",
+    "InfLoRA",
 ]
 
 def get_method(name):
@@ -26,7 +28,8 @@ def get_method(name):
             "rm": RM,
             "mvp": MVP,
             "gacl": GACL,
-            "SLDA":SLDA
+            "SLDA":SLDA,
+            "inflora": InfLoRA,
         }[name]
     except KeyError:
         raise NotImplementedError(f"Method {name} not implemented")

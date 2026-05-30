@@ -5,6 +5,7 @@ from .l2p import L2P
 from .mvp import MVP
 from .pretrained import ModifiedViT, VITACIL
 from .lora_vit import LoRAViT
+from .inflora_vit import InfLoRAViT
 from timm.models.registry import register_model
 from timm.models.vision_transformer import _create_vision_transformer
 from utils.train_utils import load_pretrain
@@ -47,6 +48,19 @@ def get_model(args, **kwargs):
             return (LoRAViT(num_classes, rank=rank, alpha=alpha,
                             adapter_targets=adapter_targets,
                             cosine_scale=cosine_scale), 224)
+        elif mode == "inflora":
+            rank = args.get("lora_rank", 16)
+            alpha = args.get("lora_alpha", 32)
+            targets_str = args.get("adapter_targets", "qkv,proj,fc1,fc2")
+            adapter_targets = [t.strip() for t in targets_str.split(",") if t.strip()]
+            cosine_scale = args.get("cosine_scale", 20.0)
+            calib_cap = args.get("inflora_calib_cap", 2048)
+            calib_per_batch = args.get("inflora_calib_per_batch", 16)
+            return (InfLoRAViT(num_classes, rank=rank, alpha=alpha,
+                               adapter_targets=adapter_targets,
+                               cosine_scale=cosine_scale,
+                               calib_cap=calib_cap,
+                               calib_per_batch=calib_per_batch), 224)
         elif mode == 'SLDA':
             model = ModifiedViT(num_classes)
             for name, param in model.vit.named_parameters():
